@@ -1,0 +1,27 @@
+{
+    "name": "fidelruiz/vericlock",
+    "description": "Vericlok API client for php",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "keywords": ["vericlock", "vericlock php client", "vericlock api"],
+    "authors": [
+        {
+            "name": "Gloria Raventos",
+            "email": "gloriaraventoslg@gmail.com"
+        },
+        {
+            "name": "Fidel Ruiz",
+            "email": "fidelruiz1617@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"fidelruiz\\Vericlock\\": "src/"}
+    },
+    "require": {
+        "php": ">=7.1"
+    },
+    "require-dev": {
+		"phpunit/phpunit": "6.*"
+    }
+}
