@@ -1,0 +1,45 @@
+{
+    "name": "VeriClock",
+    "apiVersion": "1.0",
+    "description": "Vericlock is an api that allows track employee time per jobs",
+    "baseUrl": "https://api.vericlock.com/1.0",
+    "operations":{
+        "Authenticate": {
+            "httpMethod": "POST",
+            "uri": "/auth",
+            "summary": "Login & Authenticate with VeriClock's servers.",
+            "responseClass": "AuthResponse",
+            "paramaters":{
+                "user": {
+                    "required": true,
+                    "type":"string",
+                    "location": "body",
+                    "description": "(Required)[string] employee email address"
+
+                },
+                "password": {
+                    "required": true,
+                    "type":"string",
+                    "location": "body",
+                    "description": "(Required)[string] plain text password"
+                }
+            }
+        },
+        "Logout":{
+            "httpMethod": "POST",
+            "uri": "/logout",
+            "summary": "Purposely invalidate your authentication token - otherwise it will invalidate naturally due to inactivity."
+        }
+    },
+    "models": {
+        "AuthResponse": {
+            "type": "object",
+            "properties": {
+                "authToken": {
+                    "type": "string",
+                    "description": "Use this in subsequent requests in the HTTP header: vericlock_authtoken"
+                }
+            }
+        }
+    }
+}

@@ -1,5 +1,5 @@
 {
-    "name": "fidelruiz/vericlock",
+    "name": "fidelruiz/VeriClock",
     "description": "Vericlok API client for php",
     "type": "library",
     "license": "MIT",
@@ -16,10 +16,12 @@
         }
     ],
     "autoload": {
-        "psr-4": {"fidelruiz\\Vericlock\\": "src/"}
+        "psr-4": {"fidelruiz\\VeriClock\\": "src/"}
     },
     "require": {
-        "php": ">=7.1"
+        "php": ">=7.1",
+        "guzzlehttp/guzzle": "^6.3@dev",
+        "guzzlehttp/guzzle-services": "^1.0@dev"
     },
     "require-dev": {
 		"phpunit/phpunit": "6.*"
