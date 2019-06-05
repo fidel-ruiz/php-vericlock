@@ -41,6 +41,25 @@
                 }
             ]
         },
+        "EmployeeList":{
+            "httpMethod":"POST",
+            "uri":"api/1.0/employee/query",
+            "summary":"Search VeriClock for employees matching query parameters. If no query parameters are supplied, returns a list of all active employees.",
+            "responseClass": "EmployeeListResponse",
+            "parameters":{
+                "status": {
+                    "type": "string",
+                    "location": "json",
+                    "description": "[string] [active,inactive,deleted,activeInactive] Employee's status"
+                },
+                "vericlock_authtoken": {
+                    "required": true,
+                    "type": "string",
+                    "location": "header",
+                    "description": "auth token"
+                }
+            }
+        },
         "Logout":{
             "httpMethod": "POST",
             "uri": "/logout",
@@ -61,6 +80,40 @@
                             "type": "string"
                         }
                     }
+                }
+            }
+        },
+        "EmployeeListResponse": {
+            "type": "array",
+            "location": "json",
+            "items": {
+                "type":"object",
+                "properties":{
+                    "guid": {
+                        "location": "json",
+                        "type": "string"
+                    },
+                    "status": {
+                        "location": "json",
+                        "type": "string"
+                    },
+                    "type": {
+                        "location": "json",
+                        "type": "string"
+                    },
+                    "firstName": {
+                        "location": "json",
+                        "type": "string"
+                    },
+                    "middleName": {
+                        "location": "json",
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "location": "json",
+                        "type": "string"
+                    }
+                    
                 }
             }
         }
