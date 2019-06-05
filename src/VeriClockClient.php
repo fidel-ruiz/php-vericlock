@@ -10,10 +10,10 @@ use Psr\Http\Message\RequestInterface;
 
 class VeriClockClient extends GuzzleClient
 {
-
     public static function create($config = [])
     {
         $handler_stack = HandlerStack::create();
+
         // Add a signature handler to the stack.
         $handler_stack->push(function (callable $handler) use ($config) {
             return function (RequestInterface $request, array $options) use ($handler, $config) {
@@ -33,7 +33,7 @@ class VeriClockClient extends GuzzleClient
             return function (RequestInterface $request, array $options) use ($handler, $config) {
                 // Return the request with a Bearer authorization header.
                 return $handler(
-                    $request->withAddedHeader('Authorization', 'Bearer '+$config['vericlock_authtoken']),
+                    $request->withAddedHeader('vericlock_authtoken', $config['vericlock_authtoken']),
                     $options
                 );
             };
@@ -52,6 +52,7 @@ class VeriClockClient extends GuzzleClient
                 'vericlock_api_public_key' => $config['vericlock_api_public_key'],
                 'vericlock_domain' => $config['vericlock_domain'],
             ],
+            'handler' => $handler_stack,
         ]);
 
         return new static($client, $service_description, null, null, null, $config);
@@ -63,4 +64,5 @@ class VeriClockClient extends GuzzleClient
         $sig = hash_hmac('sha256', $hashStr, $privateKey);
         return $sig;
     }
+
 }

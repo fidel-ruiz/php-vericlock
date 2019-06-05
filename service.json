@@ -2,28 +2,44 @@
     "name": "VeriClock",
     "apiVersion": "1.0",
     "description": "Vericlock is an api that allows track employee time per jobs",
-    "baseUrl": "https://api.vericlock.com/1.0",
+    "baseUrl": "https://api.vericlock.com",
     "operations":{
         "Authenticate": {
             "httpMethod": "POST",
-            "uri": "/auth",
+            "uri": "/1.0/auth",
             "summary": "Login & Authenticate with VeriClock's servers.",
             "responseClass": "AuthResponse",
-            "paramaters":{
+            "parameters":{
                 "user": {
                     "required": true,
-                    "type":"string",
-                    "location": "body",
+                    "type": "string",
+                    "location": "json",
                     "description": "(Required)[string] employee email address"
-
                 },
                 "password": {
                     "required": true,
-                    "type":"string",
-                    "location": "body",
+                    "type": "string",
+                    "location": "json",
                     "description": "(Required)[string] plain text password"
                 }
-            }
+            },
+            "errorResponses": [
+                {
+                    "code": 500,
+                    "reason": "Unexpected Error",
+                    "class": "string"
+                },
+                {
+                    "code": 401,
+                    "reason": "401 Unauthorized",
+                    "class": "string"
+                },
+                {
+                    "code": 400,
+                    "reason": "400 Bad Request",
+                    "class": "string"
+                }
+            ]
         },
         "Logout":{
             "httpMethod": "POST",
@@ -36,8 +52,15 @@
             "type": "object",
             "properties": {
                 "authToken": {
-                    "type": "string",
-                    "description": "Use this in subsequent requests in the HTTP header: vericlock_authtoken"
+                    "type": "object",
+                    "location": "json",
+                    "description": "Use this in subsequent requests in the HTTP header: vericlock_authtoken",
+                    "properties": {
+                        "token": {
+                            "location": "json",
+                            "type": "string"
+                        }
+                    }
                 }
             }
         }
